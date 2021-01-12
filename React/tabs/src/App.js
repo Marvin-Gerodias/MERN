@@ -1,15 +1,11 @@
+
 import './App.css';
-import BoxForm from './components/BoxForm';
-
-
+import Tabs from './components/Tabs';
 
 function App() {
-
-
-
   return (
     <div className="App">
-      <BoxForm />
+      <Tabs />
     </div>
   );
 }
