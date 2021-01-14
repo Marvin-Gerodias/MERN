@@ -13,7 +13,6 @@ export default function People(props) {
         .catch((e) => {setError("These aren't the droids you're looking for.")})
     }, [props])
 
-
     const Display = () => {
         return (
             <div>
