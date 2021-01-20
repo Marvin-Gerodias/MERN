@@ -1,0 +1,642 @@
+Microsoft Windows [Version 10.0.18363.1316]
+(c) 2019 Microsoft Corporation. All rights reserved.
+
+C:\Users\marvi>cd..
+
+C:\Users>cd..
+
+C:\>cd..
+
+C:\>cd c:/"Program Files"/MongoDB/Server/4.4.3/bin/
+The system cannot find the path specified.
+
+C:\>cd program files
+
+C:\Program Files>cd mongoDB
+
+C:\Program Files\MongoDB>cd server
+
+C:\Program Files\MongoDB\Server>cd 4.4
+
+C:\Program Files\MongoDB\Server\4.4>cd bin
+
+C:\Program Files\MongoDB\Server\4.4\bin>mongo.exe
+MongoDB shell version v4.4.3
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("9f3550e9-04a5-4a93-96a1-ec4872cb3bc7") }
+MongoDB server version: 4.4.3
+---
+The server generated these startup warnings when booting:
+        2021-01-14T16:35:33.172-08:00: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+---
+---
+        Enable MongoDB's free cloud-based monitoring service, which will then receive and display
+        metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+
+        The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+        and anyone you share the URL with. MongoDB may use this information to make product
+        improvements and to suggest MongoDB products and deployment options to you.
+
+        To enable free monitoring, run the following command: db.enableFreeMonitoring()
+        To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+---
+> db.createCollection('my_first_db')
+{ "ok" : 1 }
+> db.my_first_db.drop()
+true
+> db
+test
+> use my_first_db
+switched to db my_first_db
+> db
+my_first_db
+> db.createCollection('students')
+{ "ok" : 1 }
+> db.students.insert({name:"Marvin", home_state:"CA", lucky_number: "12", birthday:{month:1, day:29, year: 1986}})
+WriteResult({ "nInserted" : 1 })
+> db.students.insert({name:"Jim", home_state:"PA", lucky_number:"4", birthday:{month:2, day: 3, year: 1970}})
+WriteResult({ "nInserted" : 1 })
+> db.students.insert({name: "Dwight", home_state:"WA", lucky_number:"21", birthday:{month:9, day:30, year:2000}})
+WriteResult({ "nInserted" : 1 })
+> db.students.find({name})
+uncaught exception: ReferenceError: name is not defined :
+@(shell):1:19
+> db.students.find({name: "Marvin"})
+{ "_id" : ObjectId("600275afab6cd4feb33ea7eb"), "name" : "Marvin", "home_state" : "CA", "lucky_number" : "12", "birthday" : { "month" : 1, "day" : 29, "year" : 1986 } }
+> db.students.find({name: "Jim"})
+{ "_id" : ObjectId("6002761fab6cd4feb33ea7ec"), "name" : "Jim", "home_state" : "PA", "lucky_number" : "4", "birthday" : { "month" : 2, "day" : 3, "year" : 1970 } }
+> db.students.find({name: "Dwight"})
+{ "_id" : ObjectId("600276b5ab6cd4feb33ea7ed"), "name" : "Dwight", "home_state" : "WA", "lucky_number" : "21", "birthday" : { "month" : 9, "day" : 30, "year" : 2000 } }
+> db.students.insert({name: "Michael", home_state:"CA", lucky_number:"44", birthday:{month:1, day:1, year: 1970}})
+WriteResult({ "nInserted" : 1 })
+> db.students.find({home_state: "CA"})
+{ "_id" : ObjectId("600275afab6cd4feb33ea7eb"), "name" : "Marvin", "home_state" : "CA", "lucky_number" : "12", "birthday" : { "month" : 1, "day" : 29, "year" : 1986 } }
+{ "_id" : ObjectId("60027785ab6cd4feb33ea7ee"), "name" : "Michael", "home_state" : "CA", "lucky_number" : "44", "birthday" : { "month" : 1, "day" : 1, "year" : 1970 } }
+> db.students.find().pretty()
+{
+        "_id" : ObjectId("600275afab6cd4feb33ea7eb"),
+        "name" : "Marvin",
+        "home_state" : "CA",
+        "lucky_number" : "12",
+        "birthday" : {
+                "month" : 1,
+                "day" : 29,
+                "year" : 1986
+        }
+}
+{
+        "_id" : ObjectId("6002761fab6cd4feb33ea7ec"),
+        "name" : "Jim",
+        "home_state" : "PA",
+        "lucky_number" : "4",
+        "birthday" : {
+                "month" : 2,
+                "day" : 3,
+                "year" : 1970
+        }
+}
+{
+        "_id" : ObjectId("600276b5ab6cd4feb33ea7ed"),
+        "name" : "Dwight",
+        "home_state" : "WA",
+        "lucky_number" : "21",
+        "birthday" : {
+                "month" : 9,
+                "day" : 30,
+                "year" : 2000
+        }
+}
+{
+        "_id" : ObjectId("60027785ab6cd4feb33ea7ee"),
+        "name" : "Michael",
+        "home_state" : "CA",
+        "lucky_number" : "44",
+        "birthday" : {
+                "month" : 1,
+                "day" : 1,
+                "year" : 1970
+        }
+}
+> db.students.find({lucky_number: {$gt: 3}})
+> db.students.find({lucky_number: {$lte: 10}})
+> db.students.update(), {$push{interests: 'coding', 'brunch', 'MongoDB'{  db.students.update(), {$push{interests: 'coding', 'brunch', 'MongoDB'}})db.students.update(), {$push{interests: 'coding', 'brunch', 'MongoDB'}})
+uncaught exception: SyntaxError: missing : after property id :
+@(shell):1:28
+> db.students.find().pretty()
+{
+        "_id" : ObjectId("600275afab6cd4feb33ea7eb"),
+        "name" : "Marvin",
+        "home_state" : "CA",
+        "lucky_number" : "12",
+        "birthday" : {
+                "month" : 1,
+                "day" : 29,
+                "year" : 1986
+        }
+}
+{
+        "_id" : ObjectId("6002761fab6cd4feb33ea7ec"),
+        "name" : "Jim",
+        "home_state" : "PA",
+        "lucky_number" : "4",
+        "birthday" : {
+                "month" : 2,
+                "day" : 3,
+                "year" : 1970
+        }
+}
+{
+        "_id" : ObjectId("600276b5ab6cd4feb33ea7ed"),
+        "name" : "Dwight",
+        "home_state" : "WA",
+        "lucky_number" : "21",
+        "birthday" : {
+                "month" : 9,
+                "day" : 30,
+                "year" : 2000
+        }
+}
+{
+        "_id" : ObjectId("60027785ab6cd4feb33ea7ee"),
+        "name" : "Michael",
+        "home_state" : "CA",
+        "lucky_number" : "44",
+        "birthday" : {
+                "month" : 1,
+                "day" : 1,
+                "year" : 1970
+        }
+}
+> db.students.update({$push: {interests: 'coding', 'brunch', 'MongoDB'}})
+uncaught exception: SyntaxError: missing : after property id :
+@(shell):1:57
+> db.students.find()
+{ "_id" : ObjectId("600275afab6cd4feb33ea7eb"), "name" : "Marvin", "home_state" : "CA", "lucky_number" : "12", "birthday" : { "month" : 1, "day" : 29, "year" : 1986 } }
+{ "_id" : ObjectId("6002761fab6cd4feb33ea7ec"), "name" : "Jim", "home_state" : "PA", "lucky_number" : "4", "birthday" : { "month" : 2, "day" : 3, "year" : 1970 } }
+{ "_id" : ObjectId("600276b5ab6cd4feb33ea7ed"), "name" : "Dwight", "home_state" : "WA", "lucky_number" : "21", "birthday" : { "month" : 9, "day" : 30, "year" : 2000 } }
+{ "_id" : ObjectId("60027785ab6cd4feb33ea7ee"), "name" : "Michael", "home_state" : "CA", "lucky_number" : "44", "birthday" : { "month" : 1, "day" : 1, "year" : 1970 } }
+> db.students.update()
+uncaught exception: Error: need a query :
+DBCollection.prototype._parseUpdate@src/mongo/shell/collection.js:449:15
+DBCollection.prototype.update@src/mongo/shell/collection.js:497:18
+@(shell):1:1
+> db.students.find({_id})
+uncaught exception: ReferenceError: _id is not defined :
+@(shell):1:19
+> db.students.find(_id)
+uncaught exception: ReferenceError: _id is not defined :
+@(shell):1:1
+> db.students.find(id)
+uncaught exception: ReferenceError: id is not defined :
+@(shell):1:1
+> db.students.find({name})
+uncaught exception: ReferenceError: name is not defined :
+@(shell):1:19
+> db.students.updateMany({}, {$set:{interests:['coding', 'brunch', 'MongoDB']}})
+{ "acknowledged" : true, "matchedCount" : 4, "modifiedCount" : 4 }
+> db.students.find()
+{ "_id" : ObjectId("600275afab6cd4feb33ea7eb"), "name" : "Marvin", "home_state" : "CA", "lucky_number" : "12", "birthday" : { "month" : 1, "day" : 29, "year" : 1986 }, "interests" : [ "coding", "brunch", "MongoDB" ] }
+{ "_id" : ObjectId("6002761fab6cd4feb33ea7ec"), "name" : "Jim", "home_state" : "PA", "lucky_number" : "4", "birthday" : { "month" : 2, "day" : 3, "year" : 1970 }, "interests" : [ "coding", "brunch", "MongoDB" ] }
+{ "_id" : ObjectId("600276b5ab6cd4feb33ea7ed"), "name" : "Dwight", "home_state" : "WA", "lucky_number" : "21", "birthday" : { "month" : 9, "day" : 30, "year" : 2000 }, "interests" : [ "coding", "brunch", "MongoDB" ] }
+{ "_id" : ObjectId("60027785ab6cd4feb33ea7ee"), "name" : "Michael", "home_state" : "CA", "lucky_number" : "44", "birthday" : { "month" : 1, "day" : 1, "year" : 1970 }, "interests" : [ "coding", "brunch", "MongoDB" ] }
+> db.students.update({_id: ObjectId("600275afab6cd4feb33ea7eb")}, {$push: {interests: 'basketball'}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.students.find({name: "Marvin})
+uncaught exception: SyntaxError: "" literal not terminated before end of script :
+@(shell):1:33
+> db.students.find().pretty()
+{
+        "_id" : ObjectId("600275afab6cd4feb33ea7eb"),
+        "name" : "Marvin",
+        "home_state" : "CA",
+        "lucky_number" : "12",
+        "birthday" : {
+                "month" : 1,
+                "day" : 29,
+                "year" : 1986
+        },
+        "interests" : [
+                "coding",
+                "brunch",
+                "MongoDB",
+                "basketball"
+        ]
+}
+{
+        "_id" : ObjectId("6002761fab6cd4feb33ea7ec"),
+        "name" : "Jim",
+        "home_state" : "PA",
+        "lucky_number" : "4",
+        "birthday" : {
+                "month" : 2,
+                "day" : 3,
+                "year" : 1970
+        },
+        "interests" : [
+                "coding",
+                "brunch",
+                "MongoDB"
+        ]
+}
+{
+        "_id" : ObjectId("600276b5ab6cd4feb33ea7ed"),
+        "name" : "Dwight",
+        "home_state" : "WA",
+        "lucky_number" : "21",
+        "birthday" : {
+                "month" : 9,
+                "day" : 30,
+                "year" : 2000
+        },
+        "interests" : [
+                "coding",
+                "brunch",
+                "MongoDB"
+        ]
+}
+{
+        "_id" : ObjectId("60027785ab6cd4feb33ea7ee"),
+        "name" : "Michael",
+        "home_state" : "CA",
+        "lucky_number" : "44",
+        "birthday" : {
+                "month" : 1,
+                "day" : 1,
+                "year" : 1970
+        },
+        "interests" : [
+                "coding",
+                "brunch",
+                "MongoDB"
+        ]
+}
+> db.students.update({name: "Michael"}, {$push: {interests: 'taxes}})
+uncaught exception: SyntaxError: '' literal not terminated before end of script :
+@(shell):1:67
+> db.students.update({_id: ObjectId(600275ab6cd4feb33ea7ee")}, {$push: {interests: 'taxes'}})
+uncaught exception: SyntaxError: identifier starts immediately after numeric literal :
+@(shell):1:34
+> db.students.update({_id: ObjectId("600275ab6cd4feb33ea7ee")}, {$push: {interests: 'taxes}})
+uncaught exception: SyntaxError: '' literal not terminated before end of script :
+@(shell):1:91
+> db.students.update({_id: ObjectId("60027785ab6cd4feb33ea7ee")}, {$push: {interests: 'taxes'}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.students.update({interests}, {$pop: {array_key: 1}})
+uncaught exception: ReferenceError: interests is not defined :
+@(shell):1:21
+> db.students.find({_id: 1})
+> db.students.update({_id: ObjectId("60027785ab6cd4feb33ea7ee")}, {$pop: {interests: 1}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.inventory.deleteMany({home_state: "WA"})
+{ "acknowledged" : true, "deletedCount" : 0 }
+> db.inventory.deleteOne({name: "Jim"})
+{ "acknowledged" : true, "deletedCount" : 0 }
+> db.students.find().pretty()
+{
+        "_id" : ObjectId("600275afab6cd4feb33ea7eb"),
+        "name" : "Marvin",
+        "home_state" : "CA",
+        "lucky_number" : "12",
+        "birthday" : {
+                "month" : 1,
+                "day" : 29,
+                "year" : 1986
+        },
+        "interests" : [
+                "coding",
+                "brunch",
+                "MongoDB",
+                "basketball"
+        ]
+}
+{
+        "_id" : ObjectId("6002761fab6cd4feb33ea7ec"),
+        "name" : "Jim",
+        "home_state" : "PA",
+        "lucky_number" : "4",
+        "birthday" : {
+                "month" : 2,
+                "day" : 3,
+                "year" : 1970
+        },
+        "interests" : [
+                "coding",
+                "brunch",
+                "MongoDB"
+        ]
+}
+{
+        "_id" : ObjectId("600276b5ab6cd4feb33ea7ed"),
+        "name" : "Dwight",
+        "home_state" : "WA",
+        "lucky_number" : "21",
+        "birthday" : {
+                "month" : 9,
+                "day" : 30,
+                "year" : 2000
+        },
+        "interests" : [
+                "coding",
+                "brunch",
+                "MongoDB"
+        ]
+}
+{
+        "_id" : ObjectId("60027785ab6cd4feb33ea7ee"),
+        "name" : "Michael",
+        "home_state" : "CA",
+        "lucky_number" : "44",
+        "birthday" : {
+                "month" : 1,
+                "day" : 1,
+                "year" : 1970
+        },
+        "interests" : [
+                "coding",
+                "brunch",
+                "MongoDB"
+        ]
+}
+> db.students.deleteMany({home_state: "WA"})
+{ "acknowledged" : true, "deletedCount" : 1 }
+> db.students.deleteOne({name: "Jim})
+uncaught exception: SyntaxError: "" literal not terminated before end of script :
+@(shell):1:35
+> db.students.deleteOne({name: "Jim"
+... db.students.find()
+...
+... })
+uncaught exception: SyntaxError: missing } after property list :
+@(shell):2:0
+> db.students.deleteOne({name: "Jim"})
+{ "acknowledged" : true, "deletedCount" : 1 }
+> db.students.find().pretty()
+{
+        "_id" : ObjectId("600275afab6cd4feb33ea7eb"),
+        "name" : "Marvin",
+        "home_state" : "CA",
+        "lucky_number" : "12",
+        "birthday" : {
+                "month" : 1,
+                "day" : 29,
+                "year" : 1986
+        },
+        "interests" : [
+                "coding",
+                "brunch",
+                "MongoDB",
+                "basketball"
+        ]
+}
+{
+        "_id" : ObjectId("60027785ab6cd4feb33ea7ee"),
+        "name" : "Michael",
+        "home_state" : "CA",
+        "lucky_number" : "44",
+        "birthday" : {
+                "month" : 1,
+                "day" : 1,
+                "year" : 1970
+        },
+        "interests" : [
+                "coding",
+                "brunch",
+                "MongoDB"
+        ]
+}
+> db.students.findOneAndDelete({lucky_number: {$gt: 12}})
+null
+> db.students.deleteOne({lucky_number: {$gt: 5}})
+{ "acknowledged" : true, "deletedCount" : 0 }
+> db.students.find()
+{ "_id" : ObjectId("600275afab6cd4feb33ea7eb"), "name" : "Marvin", "home_state" : "CA", "lucky_number" : "12", "birthday" : { "month" : 1, "day" : 29, "year" : 1986 }, "interests" : [ "coding", "brunch", "MongoDB", "basketball" ] }
+{ "_id" : ObjectId("60027785ab6cd4feb33ea7ee"), "name" : "Michael", "home_state" : "CA", "lucky_number" : "44", "birthday" : { "month" : 1, "day" : 1, "year" : 1970 }, "interests" : [ "coding", "brunch", "MongoDB" ] }
+> db.students.updateMany({}, {$set:{'number_of_belts': 0}})
+{ "acknowledged" : true, "matchedCount" : 2, "modifiedCount" : 2 }
+> db.students.find().pretty()
+{
+        "_id" : ObjectId("600275afab6cd4feb33ea7eb"),
+        "name" : "Marvin",
+        "home_state" : "CA",
+        "lucky_number" : "12",
+        "birthday" : {
+                "month" : 1,
+                "day" : 29,
+                "year" : 1986
+        },
+        "interests" : [
+                "coding",
+                "brunch",
+                "MongoDB",
+                "basketball"
+        ],
+        "number_of_belts" : 0
+}
+{
+        "_id" : ObjectId("60027785ab6cd4feb33ea7ee"),
+        "name" : "Michael",
+        "home_state" : "CA",
+        "lucky_number" : "44",
+        "birthday" : {
+                "month" : 1,
+                "day" : 1,
+                "year" : 1970
+        },
+        "interests" : [
+                "coding",
+                "brunch",
+                "MongoDB"
+        ],
+        "number_of_belts" : 0
+}
+> db.students.find({home_state: "CA})
+uncaught exception: SyntaxError: "" literal not terminated before end of script :
+@(shell):1:35
+> db.students.find({home_state: "CA"})
+{ "_id" : ObjectId("600275afab6cd4feb33ea7eb"), "name" : "Marvin", "home_state" : "CA", "lucky_number" : "12", "birthday" : { "month" : 1, "day" : 29, "year" : 1986 }, "interests" : [ "coding", "brunch", "MongoDB", "basketball" ], "number_of_belts" : 0 }
+{ "_id" : ObjectId("60027785ab6cd4feb33ea7ee"), "name" : "Michael", "home_state" : "CA", "lucky_number" : "44", "birthday" : { "month" : 1, "day" : 1, "year" : 1970 }, "interests" : [ "coding", "brunch", "MongoDB" ], "number_of_belts" : 0 }
+> db.students.updateMany({home_state: "CA"}, {$set{number_of_belts: 1}})
+uncaught exception: SyntaxError: missing : after property id :elts: 1}})
+@(shell):1:48.updateMany({home_state: "CA"}, {$set{number_of_belts: 1}})
+> db.students.updateMany({home_state: "CA"}, {$set{number_of_belts: 1}})
+>
+> db.students.updateMany({home_state: "CA"}, {$set: {number_of_belts: 1}})
+{ "acknowledged" : true, "matchedCount" : 2, "modifiedCount" : 2 }
+> db.students.find().pretty()
+{
+        "_id" : ObjectId("600275afab6cd4feb33ea7eb"),
+        "name" : "Marvin",
+        "home_state" : "CA",
+        "lucky_number" : "12",
+        "birthday" : {
+                "month" : 1,
+                "day" : 29,
+                "year" : 1986
+        },
+        "interests" : [
+                "coding",
+                "brunch",
+                "MongoDB",
+                "basketball"
+        ],
+        "number_of_belts" : 1
+}
+{
+        "_id" : ObjectId("60027785ab6cd4feb33ea7ee"),
+        "name" : "Michael",
+        "home_state" : "CA",
+        "lucky_number" : "44",
+        "birthday" : {
+                "month" : 1,
+                "day" : 1,
+                "year" : 1970
+        },
+        "interests" : [
+                "coding",
+                "brunch",
+                "MongoDB"
+        ],
+        "number_of_belts" : 1
+}
+> db.students.updateMany({}, {$rename: {"number_of_belts": "belts_earned"}})
+{ "acknowledged" : true, "matchedCount" : 2, "modifiedCount" : 2 }
+> db.students.find().pretty()
+{
+        "_id" : ObjectId("600275afab6cd4feb33ea7eb"),
+        "name" : "Marvin",
+        "home_state" : "CA",
+        "lucky_number" : "12",
+        "birthday" : {
+                "month" : 1,
+                "day" : 29,
+                "year" : 1986
+        },
+        "interests" : [
+                "coding",
+                "brunch",
+                "MongoDB",
+                "basketball"
+        ],
+        "belts_earned" : 1
+}
+{
+        "_id" : ObjectId("60027785ab6cd4feb33ea7ee"),
+        "name" : "Michael",
+        "home_state" : "CA",
+        "lucky_number" : "44",
+        "birthday" : {
+                "month" : 1,
+                "day" : 1,
+                "year" : 1970
+        },
+        "interests" : [
+                "coding",
+                "brunch",
+                "MongoDB"
+        ],
+        "belts_earned" : 1
+}
+> db.students.updateMany({}, {$unset: {"lucky_number"}})
+uncaught exception: SyntaxError: missing : after property id :
+@(shell):1:51
+> db.students.update({}, {$unset: {lucky_number:1}}, {multi: true})
+WriteResult({ "nMatched" : 2, "nUpserted" : 0, "nModified" : 2 })
+> db.students.find().pretty()
+{
+        "_id" : ObjectId("600275afab6cd4feb33ea7eb"),
+        "name" : "Marvin",
+        "home_state" : "CA",
+        "birthday" : {
+                "month" : 1,
+                "day" : 29,
+                "year" : 1986
+        },
+        "interests" : [
+                "coding",
+                "brunch",
+                "MongoDB",
+                "basketball"
+        ],
+        "belts_earned" : 1
+}
+{
+        "_id" : ObjectId("60027785ab6cd4feb33ea7ee"),
+        "name" : "Michael",
+        "home_state" : "CA",
+        "birthday" : {
+                "month" : 1,
+                "day" : 1,
+                "year" : 1970
+        },
+        "interests" : [
+                "coding",
+                "brunch",
+                "MongoDB"
+        ],
+        "belts_earned" : 1
+}
+> db.students.update({}, {$set {$currentDate: {"updated_on": "$$NOW"}}})
+uncaught exception: SyntaxError: missing : after property id :
+@(shell):1:29
+> db.students.update({}, {$set: {$currentDate: {"updated_on": "$$NOW"}}})
+WriteResult({
+        "nMatched" : 0,
+        "nUpserted" : 0,
+        "nModified" : 0,
+        "writeError" : {
+                "code" : 52,
+                "errmsg" : "The dollar ($) prefixed field '$currentDate' in '$currentDate' is not valid for storage."
+        }
+})
+> db.students.update({}, {$currentDate: {"updated_on": "$$NOW"}})
+WriteResult({
+        "nMatched" : 0,
+        "nUpserted" : 0,
+        "nModified" : 0,
+        "writeError" : {
+                "code" : 2,
+                "errmsg" : "string is not valid type for $currentDate. Please use a boolean ('true') or a $type expression ({$type: 'timestamp/date'})."
+        }
+})
+> db.students.updateMany({}, {$currentDate: {"updated_on": {"$type": date}}})
+uncaught exception: ReferenceError: date is not defined :
+@(shell):1:59
+> db.students.updateMany({}, {$currentDate: {updated_on: {$type: 'date'}}})
+{ "acknowledged" : true, "matchedCount" : 2, "modifiedCount" : 2 }
+> db.students.find().pretty()
+{
+        "_id" : ObjectId("600275afab6cd4feb33ea7eb"),
+        "name" : "Marvin",
+        "home_state" : "CA",
+        "birthday" : {
+                "month" : 1,
+                "day" : 29,
+                "year" : 1986
+        },
+        "interests" : [
+                "coding",
+                "brunch",
+                "MongoDB",
+                "basketball"
+        ],
+        "belts_earned" : 1,
+        "updated_on" : ISODate("2021-01-16T07:08:49.519Z")
+}
+{
+        "_id" : ObjectId("60027785ab6cd4feb33ea7ee"),
+        "name" : "Michael",
+        "home_state" : "CA",
+        "birthday" : {
+                "month" : 1,
+                "day" : 1,
+                "year" : 1970
+        },
+        "interests" : [
+                "coding",
+                "brunch",
+                "MongoDB"
+        ],
+        "belts_earned" : 1,
+        "updated_on" : ISODate("2021-01-16T07:08:49.519Z")
+}
+>

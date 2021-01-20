@@ -2,14 +2,15 @@ import React, { useState } from 'react'
 import { navigate } from '@reach/router'
 
 
-
 export default function Main() {
     const [input, setInput] = useState("people");
     const [id, setId] = useState(1);
 
+
     const handleSubmit = (e) => {
         navigate(`/${input}/${id}`);
     }
+
 
     return (
         <>

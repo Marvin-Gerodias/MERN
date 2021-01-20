@@ -3,15 +3,21 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Main from './Main';
 
+
+
 export default function Planets(props) {
     const [result, setResult] = useState({});
     const [error, setError] = useState(null);
+
+
 
     useEffect(() => {
         axios.get(`https://swapi.dev/api/planets/${props.id}/`)
         .then(response => {setResult(response.data)})
         .catch((e) => {setError("These aren't the droids you're looking for.")})
     }, [props])
+
+
 
     const Display = () => {
         return (
@@ -33,6 +39,8 @@ export default function Planets(props) {
             </>
         )
     }
+
+
 
     return (
         <div>

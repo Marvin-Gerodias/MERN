@@ -3,9 +3,13 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Main from './Main';
 
+
+
 export default function People(props) {
     const [result, setResult] = useState({});
     const [error, setError] = useState(null);
+
+
 
     useEffect(() => {
         axios.get(`https://swapi.dev/api/people/${props.id}/`)
@@ -13,6 +17,8 @@ export default function People(props) {
         .catch((e) => {setError("These aren't the droids you're looking for.")})
     }, [props])
 
+
+    
     const Display = () => {
         return (
             <div>
@@ -33,6 +39,8 @@ export default function People(props) {
             </>
         )
     }
+
+
 
     return (
         <div>
